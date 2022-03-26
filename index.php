@@ -6,4 +6,4 @@ require_once 'vendor/autoload.php';
 
 $greeting = new Greeting();
 
-echo $greeting->sayHi();
+echo $greeting->sayHi() . PHP_EOL;
