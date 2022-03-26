@@ -6,7 +6,7 @@ Building image & running container from root directory
 
 ``docker build -t <IMAGE-NAME>:<IMAGE-TAG> .``
 
-`` >docker run --name <CONTAINER-NAME> <IMAGE-NAME>:<IMAGE-TAG>``
+``docker run --name <CONTAINER-NAME> <IMAGE-NAME>:<IMAGE-TAG>``
 
 Alternatively can be pulled & run from dockerhub repo
 
