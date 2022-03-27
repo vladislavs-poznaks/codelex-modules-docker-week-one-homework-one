@@ -7,17 +7,18 @@ LABEL author="Vladislavs Poznaks"
 #Updating packages
 RUN apk update && apk upgrade
 
+# Adding bash
+RUN apk add bash
+
 #Adding curl
-RUN apk --no-cache add curl
+RUN apk add curl
 
 # Adding php with necessary extensions for Composer & PHPUnit
-RUN apk add php7 php7-xml php7-dom php7-json php7-tokenizer php7-xmlwriter php7-phar php7-mbstring php7-openssl
+RUN apk add php8 php8-xml php8-dom php8-json php8-tokenizer php8-xmlwriter php8-phar php8-mbstring php8-openssl
+RUN ln -s /usr/bin/php8 /usr/bin/php
 
 # Adding Composer
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-RUN php composer-setup.php
-RUN php -r "unlink('composer-setup.php');"
+RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
 # Copy source code
@@ -30,4 +31,4 @@ WORKDIR /var/www/html
 RUN composer install
 
 # Run scripts
-CMD sh start.sh
+CMD ["/bin/bash", "-c", "./vendor/bin/phpunit ./tests || true && php index.php"]
