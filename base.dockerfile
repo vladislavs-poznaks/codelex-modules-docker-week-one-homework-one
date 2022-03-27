@@ -30,5 +30,8 @@ WORKDIR /var/www/html
 # Install dependencies
 RUN composer install
 
-# Run scripts
-CMD ["/bin/bash", "-c", "./vendor/bin/phpunit ./tests || true && php index.php"]
+# Add optional arguments
+CMD ["arg"]
+
+# Run script
+ENTRYPOINT ["php", "index.php"]

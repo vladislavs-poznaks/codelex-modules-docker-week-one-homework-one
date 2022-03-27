@@ -4,6 +4,9 @@ FROM alpine:latest
 LABEL version="Docker-week-one-homework-one-bonus"
 LABEL author="Vladislavs Poznaks"
 
+# Adding enviromental variables
+ENV HEALTH_CHECK=0
+
 #Updating packages
 RUN apk update && apk upgrade
 
@@ -30,8 +33,9 @@ WORKDIR /var/www/html
 # Install dependencies
 RUN composer install
 
-# Add optional arguments
-CMD ["arg"]
+# Add health check
+HEALTHCHECK --interval=5s \
+    CMD exit ${HEALTH_CHECK}
 
-# Run scripts
-ENTRYPOINT ["php", "index.php"]
+# Run script
+ENTRYPOINT ["/bin/bash", "-c", "php index.php >> ./logs/greetings.log && tail -f /dev/null"]
