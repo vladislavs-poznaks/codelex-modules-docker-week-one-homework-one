@@ -18,6 +18,7 @@ class GreetingTest extends TestCase
     {
         $greeting = new Greeting();
 
+        $this->assertEquals('Ciao da Docker!', $greeting->sayHi('it'));
         $this->assertEquals('Hola de Docker!', $greeting->sayHi('es'));
     }
 

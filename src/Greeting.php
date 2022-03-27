@@ -4,8 +4,18 @@ namespace App;
 
 class Greeting
 {
-    public function sayHi(): string
+    public function sayHi(?string $lang = 'en'): string
     {
-        return 'Hi from Docker!';
+        $translations = $this->translations();
+
+        return ($translations[$lang] ?? $translations['en']) . ' Docker!';
+    }
+
+    private function translations(): array
+    {
+        return [
+            'en' => 'Hi from',
+            'it' => 'Ciao da',
+        ];
     }
 }
