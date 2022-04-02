@@ -22,7 +22,7 @@ RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
 # Copy source code
-COPY ./ /var/www/html
+COPY .. /var/www/html
 
 # Set working directory
 WORKDIR /var/www/html
@@ -31,7 +31,7 @@ WORKDIR /var/www/html
 RUN composer install
 
 # Add optional arguments
-CMD ["arg"]
+CMD ["-pen"]
 
 # Run script
 ENTRYPOINT ["php", "index.php"]

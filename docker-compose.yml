@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  base:
+    build:
+      context: .
+      dockerfile: '.docker/base.dockerfile'
+    container_name: 'base-homework'
+  tests:
+    build:
+      context: .
+      dockerfile: '.docker/test.dockerfile'
+    container_name: 'base-homework-tests'
+  bonus:
+    build:
+      context: .
+      dockerfile: '.docker/bonus.dockerfile'
+    container_name: 'base-homework-bonus'
+    volumes:
+      - './:/var/www/html/'
+  server:
+    image: vladislavspoznaks/docker-week-one-homework-one-server:homework
+    container_name: 'webapp'
+    ports:
+      - '7777:80'
