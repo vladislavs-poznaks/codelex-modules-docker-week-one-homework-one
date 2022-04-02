@@ -39,3 +39,19 @@ How to sneak in the argument to first command?
 How to handle this correctly?
 
 ``docker run --volume <HOST-PATH>:<CONTAINER-PATH>> --name <CONTAINER-NAME> vladislavspoznaks/docker-week-one-homework-one-base:homework``
+
+## Week 2, homework 1
+
+Created a docker-compose.yml with all services.
+
+To run all in detached mode
+
+``docker compose up -d``
+
+To run base homework with an output to terminal
+
+``docker compose run --rm base``
+
+To run tests
+
+``docker compose run --rm tests``
